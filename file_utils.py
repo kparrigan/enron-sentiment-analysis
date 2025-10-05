@@ -65,9 +65,9 @@ def parse_file(file_path: str) -> DataFrame:
             sender = extract_from_message(msg, sender_re)
             recipients_text = extract_from_message(msg, recipient_re)
             recipients = parse_csv_list(recipients_text) if recipients_text else []
-            message_text = extract_from_message(msg, msg_text_re)
+            message_body = extract_from_message(msg, msg_text_re)
 
-            rows.append({'file': fname, 'rec_date': rec_date, 'sender': sender, 'recipients': recipients, 'message_text': message_text})
+            rows.append({'file': fname, 'rec_date': rec_date, 'sender': sender, 'recipients': recipients, 'message_body': message_body})
 
     # Build DataFrame containing only the two columns requested
-    return DataFrame(rows, columns=['file', 'rec_date', 'sender', 'recipients', 'message_text'])
+    return DataFrame(rows, columns=['file', 'rec_date', 'sender', 'recipients', 'message_body'])
